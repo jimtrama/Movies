@@ -1,0 +1,29 @@
+:host{
+    height: 100%;
+    display: block;
+    position: relative;
+}
+
+
+.background-wrapper{
+    height: 100%;
+    width: 140%;
+    background: linear-gradient(
+        to right top,
+        rgba(187, 187, 187, 0.4),
+        rgba(55, 55, 55, 0.2)
+    );
+
+    position: absolute;
+    top: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    word-wrap: break-word;
+
+    img{
+        height: 60%;
+        outline: none;
+        margin: 0;
+    }
+}

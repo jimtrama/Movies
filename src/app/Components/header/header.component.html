@@ -1,0 +1,9 @@
+<div class="header-wrapper" >
+    <button (click)="actionClicked()" [routerLink]="['movies']" [routerLinkActive]="'active'" >Movies</button>
+    <div class="bullet" ></div>
+    <button (click)="actionClicked()" [routerLink]="['rentals']" [routerLinkActive]="'active'" >Rentals</button>
+    <div class="bullet" ></div>
+    <button (click)="actionClicked()" [routerLink]="['account']" [routerLinkActive]="'active'">Account</button>
+    <div class="bullet" ></div>
+    <button (click)="logout()">Log Out</button>
+</div>

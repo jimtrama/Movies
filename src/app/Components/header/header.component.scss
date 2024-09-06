@@ -1,0 +1,32 @@
+.header-wrapper{
+    width: calc(100vw - 2rem);
+    height: 7vh;
+    background-color: rgba(255, 255, 255, 0.358);
+    backdrop-filter: blur(1rem);
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    gap: 1rem;
+}
+
+.bullet{
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+button{
+    background-color: transparent;
+    font-weight: bolder;
+    letter-spacing: 0.2rem;
+    font-size: 1.2rem;
+}
+
+button:hover{
+   border-bottom: 2px solid grey;
+}
+.active{
+    color: white;
+}

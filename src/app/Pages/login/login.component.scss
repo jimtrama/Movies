@@ -1,0 +1,36 @@
+.login-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    max-width: 400px;
+    min-width: fit-content;
+
+    padding: 2rem 2rem;
+    
+    background-color: darkgray;
+
+    justify-content: space-between;
+    align-items: center;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%,-50%);
+
+    height: 20vh;
+
+    border-radius: 1rem;
+}
+
+input{
+    padding: 0.5rem;
+    font-size: large;
+    border-radius: 0.5rem;
+}
+
+button{
+    padding: 1rem;
+    font-size: large;
+    border-radius: 0.5rem;
+}

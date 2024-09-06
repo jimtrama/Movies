@@ -1,0 +1,12 @@
+<div class="movie-wrapper" 
+(click)="clicked()" 
+[id]="movie.uuid"
+>
+    <span class="title" >{{movie.title | cutIfNeeded}}</span>
+    <img *ngIf="!!posterUrl" class="image-poster" (error)="err($event)" [src]="posterUrl">
+    <div class="actions-wrapper">
+        {{movie.rating}}
+        <img src="assets/icons/star.png" style="height: 20px;" >
+    </div>
+</div>
+

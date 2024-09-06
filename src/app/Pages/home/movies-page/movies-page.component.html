@@ -1,0 +1,9 @@
+<div class="movies-wrapper" id="movies-wrapper-cont">
+    <app-movie  *ngFor="let movie of movies" [movie]="movie" ></app-movie>
+    <div class="spinner-wrapper" *ngIf="!!fetchingNext.nextUrl">
+        <div class="spinner-text-group">
+            <div id="loading"></div>
+            <span class="spinner-text">LOADING</span>
+        </div>
+    </div>
+</div>

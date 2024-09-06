@@ -1,0 +1,7 @@
+<div class="background-wrapper">
+    <img *ngFor="let image of imagesForBg;let i = index" [src]="image" >
+</div>
+<app-header/>
+<div style="height: 100%;">
+    <router-outlet></router-outlet>
+</div>

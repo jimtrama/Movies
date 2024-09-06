@@ -1,0 +1,39 @@
+<div class="rentals-wrapper">
+    <div class="rental-wrapper">
+        <table>
+            <thead>
+                <th *ngFor="let header of headers">
+                    <div class="header-group">
+                        {{ header.title }}
+                        <div class="actions-group" *ngIf="header.keyToSort != 'no_sort'">
+                            <button (click)="sort(header.keyToSort, 'asc')" class="icon">
+                                <img src="/assets/icons/asc.png" class="icon asc-icon" >
+                            </button>
+                            <button (click)="sort(header.keyToSort, 'desc')" class="icon">
+                                <img src="/assets/icons/desc.png" class="asc-icon" >
+                            </button>
+                        </div>
+                    </div>
+                </th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let rental of rentals; let i = index">
+                    <td>{{ rental.movie }}</td>
+                    <td>{{ rental.rental_date }}</td>
+                    <td>{{ rental.charge }}</td>
+                    <td>
+                        <button *ngIf="!rental.is_paid" (click)="giveItBack(i)">Give it Back</button>
+                    </td>
+                    <td>{{ rental.is_paid?'No':'' }}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr class="footer">
+                    <button (click)="prev()" class="icon"><img class="flip" src="assets/icons/next.png" ></button>
+                    <span>{{ page }} of {{ totalPages }} pages</span>
+                    <button (click)="next()" class="icon" > <img src="assets/icons/next.png" ></button>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

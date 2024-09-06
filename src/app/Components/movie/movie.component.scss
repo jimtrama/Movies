@@ -1,0 +1,52 @@
+.movie-wrapper{
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 1rem;
+
+    padding: 1rem 1.5rem;
+    margin: 10px;
+    gap: 1rem;
+    
+    max-width: 150px;
+    height: 320px;
+
+    cursor: pointer;
+
+    background: linear-gradient(
+        to right bottom,
+        rgba(255, 255, 255, 0.4),
+        rgba(255, 255, 255, 0.2)
+    );
+    backdrop-filter: blur(1rem);
+
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+
+
+}
+
+
+.title{
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.image-poster{
+    height: 200px;
+    width: 150px;
+}
+
+.actions-wrapper{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 0.3rem;
+}
+
+
+
+
