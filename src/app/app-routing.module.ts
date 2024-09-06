@@ -4,8 +4,8 @@ import { LoginComponent } from './Pages/login/login.component';
 import { HomeComponent } from './Pages/home/home.component';
 import { AccountService } from './Services/account.service';
 import { MainHomeContentComponent } from './Pages/home/movies-page/movies-page.component';
-import { AccountContentComponent } from './Pages/home/account-content/account-content.component';
-import { RentalsContentComponent } from './Pages/home/rentals-content/rentals-content.component';
+import { AccountContentComponent } from './Pages/home/account-page/account-content.component';
+import { RentalsContentComponent } from './Pages/home/rentals-page/rentals-content.component';
 import { MoviePageComponent } from './Pages/home/movie-page/movie-page.component';
 
 const isLoggedInGuard: CanActivateFn = (route, state) => {

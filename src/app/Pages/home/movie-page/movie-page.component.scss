@@ -10,6 +10,9 @@
 
     display: flex;
     flex-direction: column;
+
+    align-items: start;
+
     padding-left: 2rem;
     width: 80vw;
     height: 60vh;
@@ -25,7 +28,48 @@
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
 }
 
-img{
+.bg-img{
     height: 100%;
     position: absolute;
+}
+.row{
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    
+    div{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap:0.4rem;
+
+        font-weight: bolder;
+    }
+}
+
+.category-label{
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    font-size: 0.9rem;
+}
+
+.rent-movie-button{
+    background-color: transparent;
+    font-size: 1rem;
+    text-transform: uppercase;
+    border-radius: 1rem;
+    border: 1px solid black;
+    padding: 0.2rem 0.8rem;
+}
+
+.rent-movie-button:hover{
+    background-color: black;
+    color: white;
+}
+.icon{
+    height: 1.5rem;
+    width: 1.5rem;
 }

@@ -1,17 +1,31 @@
-<img [src]="movie.poster_url" />
+<img class="bg-img" [src]="movie.poster_url" />
 <div class="movie-page-wrapper">
-    <h1>{{ movie.title }}</h1>
-    <div>
-        
-        <button (click)="rent()">Rent</button>
+    <h1 class="row" style="margin-top: 1rem;">{{ movie.title }}</h1>
+    
+    <div class="row">
+        <div>
+            <img class="icon" src="assets/icons/star.png" >
+            <span>{{movie.rating}}</span>
+        </div>
+
+        <div>
+            <img class="icon" src="assets/icons/clock.png" >
+            <span>{{movie.duration}}''</span>
+        </div>
+    </div>
+    <div class="row">
+        <button (click)="rent()" class="rent-movie-button">Rent</button>
+    </div>
+    <div class="row">
+        <div>
+            <img class="icon" src="assets/icons/categories.png" >
+        </div>
+        <span class="category-label" *ngFor="let cat of movie.categories">{{cat}}</span>
+    </div>
+    <div style="margin-top: 3rem;">
+        <span>{{ movie.description }}</span>
     </div>
     
-    <span>{{ movie.rating }}</span>
-    <span>{{movie.duration}}''</span>
-    <div>
-        <span *ngFor="let cat of movie.categories">{{cat}}.</span>
-    </div>
-    <span>{{ movie.description }}</span>
     
 </div>
 
