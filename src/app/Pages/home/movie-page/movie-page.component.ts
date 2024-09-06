@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MovieService } from '../../../Services/movie.service';
 import Movie from '../../../Models/movie.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-movie-page',
@@ -10,9 +10,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MoviePageComponent {
     movie: Movie = new Movie();
+    errorText:string = "";
 
     constructor(
         private movieService: MovieService,
+        private router:Router,
         private route: ActivatedRoute
     ) {
         const uuid = this.route.snapshot.paramMap.get('id');
@@ -20,6 +22,14 @@ export class MoviePageComponent {
     }
 
     rent() {
-        this.movieService.rent(this.movie);
+        this.movieService.rent(this.movie,this.onSuccess.bind(this),this.onError.bind(this));
+    }
+
+    onSuccess(){
+        this.router.navigate(["home","movies"])
+    }
+
+    onError(){
+        this.errorText = "Something went wrong";
     }
 }

@@ -36,7 +36,7 @@ export class RentalsContentComponent {
             keyToSort:"no_sort"
         },
         {
-            title:"Change",
+            title:"Return Action",
             keyToSort:"no_sort"
         },
         {
@@ -64,6 +64,7 @@ export class RentalsContentComponent {
     }
 
     giveItBack(i: number) {
+        this.page = 1;
         this.movieService.giveItBack(
             this.rentals[i].uuid,
             this.onOk.bind(this)

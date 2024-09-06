@@ -15,6 +15,7 @@
     </div>
     <div class="row">
         <button (click)="rent()" class="rent-movie-button">Rent</button>
+        <span style="color: red; font-size: 1rem;">{{errorText}}</span>
     </div>
     <div class="row">
         <div>
@@ -22,7 +23,7 @@
         </div>
         <span class="category-label" *ngFor="let cat of movie.categories">{{cat}}</span>
     </div>
-    <div style="margin-top: 3rem;">
+    <div style="margin-top: 3rem;font-size: 1.1rem;">
         <span>{{ movie.description }}</span>
     </div>
     

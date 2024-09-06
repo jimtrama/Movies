@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { API_BASE_ROUTE, GET_PROFILE, LOGIN_ENDPOINT } from '../api/api.constants';
+import { CREATE_MOVIE_ENDPOINT, GET_PROFILE, LOGIN_ENDPOINT } from '../api/api.constants';
 import { Router } from '@angular/router';
 import { ErrorService } from './error.service';
 import Account from '../Models/account.model';
@@ -16,6 +16,9 @@ export class AccountService {
     public key:string = "";
     public refreshLink:string = ""
     public errorMessage = "";
+
+    private isAdmin:BehaviorSubject<boolean> = new BehaviorSubject(false);
+    public isAdmin$:Observable<boolean> = this.isAdmin.asObservable();
 
     public account:BehaviorSubject<Account> = new BehaviorSubject({} as Account);
     public account$:Observable<Account> = this.account.asObservable();
@@ -36,13 +39,14 @@ export class AccountService {
 
 
     login(username:string,password:string){
-        this.http.post(API_BASE_ROUTE+LOGIN_ENDPOINT,{username,password})
+        this.http.post(LOGIN_ENDPOINT,{username,password})
         .subscribe((res:any)=>{
             if(!!res.access){
                 this.key = res.access;
                 this.fetchAccount();
                 localStorage.setItem(ID_KEY,JSON.stringify({"access":this.key,"refresh":res.refresh}));
-                this.router.navigate(["home/main"])
+                this.checkAccountType();
+                this.router.navigate(["home","main"])
             }
             
         })
@@ -66,11 +70,25 @@ export class AccountService {
     }
 
     private fetchAccount(){
-        this.http.get(API_BASE_ROUTE+GET_PROFILE)
+        this.http.get(GET_PROFILE)
                 .subscribe((res)=>{
                     this.account.next(res as Account)
                     localStorage.setItem(ACCOUNT_KEY,JSON.stringify(res));
                 })
+    }
+
+    private checkAccountType(){
+        this.http
+            .post(CREATE_MOVIE_ENDPOINT,{})
+            .subscribe((res: any) => {
+                if (res.detail === "You do not have permission to perform this action.") {
+                    this.isAdmin.next(false);
+                }
+            },err=>{
+                if(err.error.title[0] == "This field is required."){
+                    this.isAdmin.next(true);
+                }
+            });
     }
 
     

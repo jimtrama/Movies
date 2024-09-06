@@ -1,4 +1,6 @@
 <div class="header-wrapper" >
+    <button *ngIf="isAdmin" (click)="actionClicked()" [routerLink]="['graph']" [routerLinkActive]="'active'" >Graph</button>
+    <div class="bullet" ></div>
     <button (click)="actionClicked()" [routerLink]="['movies']" [routerLinkActive]="'active'" >Movies</button>
     <div class="bullet" ></div>
     <button (click)="actionClicked()" [routerLink]="['rentals']" [routerLinkActive]="'active'" >Rentals</button>

@@ -37,10 +37,10 @@ th{
 
 td{
     text-align: center;
-    vertical-align: baseline;
+    vertical-align: middle;
     padding: 1rem;
     font-size: 1.3rem;
-    
+
     border-bottom: 1px solid black;
 }
 
@@ -75,6 +75,14 @@ td{
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
+}
+
+.give-it-back-btn{
+    font-size: 1rem;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    padding: 0.2rem 0.8rem;
+    background-color: transparent;
 }
 
 .footer{

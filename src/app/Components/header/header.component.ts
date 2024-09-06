@@ -8,11 +8,15 @@ import { MovieService } from '../../Services/movie.service';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+
+  isAdmin = false;
   
   constructor(
     private accountService:AccountService,
     private movieService:MovieService
-  ){}
+  ){
+    accountService.isAdmin$.subscribe(a=>this.isAdmin = a);
+  }
 
   logout(){
     this.accountService.logout();

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component } from '@angular/core';
-import { API_BASE_ROUTE, MOVIES_ENDPOINT } from '../../../api/api.constants';
+import { MOVIES_ENDPOINT } from '../../../api/api.constants';
 import { CategoriesResponse } from '../../../api/responses.types';
 import Movie from '../../../Models/movie.model';
 import { MovieService } from '../../../Services/movie.service';
@@ -17,9 +17,7 @@ export class MainHomeContentComponent implements AfterViewInit {
 
     constructor(private http: HttpClient,private movieService:MovieService) {
         this.fetchingNext = { fetching: false, nextUrl: '' };
-        this.fetchMovies(
-            API_BASE_ROUTE + MOVIES_ENDPOINT + '?page=1&page_size=31'
-        );
+        this.fetchMovies(MOVIES_ENDPOINT + '?page=1&page_size=31');
 
         
     }
