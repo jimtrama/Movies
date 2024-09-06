@@ -6,7 +6,6 @@ import {
     LOGIN_ENDPOINT,
 } from '../api/api.constants';
 import { Router } from '@angular/router';
-import { ErrorService } from './error.service';
 import Account from '../Models/account.model';
 import { BehaviorSubject, noop, Observable } from 'rxjs';
 
@@ -21,7 +20,7 @@ export class AccountService {
     public refreshLink: string = '';
     public errorMessage = '';
 
-    private isAdmin: BehaviorSubject<boolean> = new BehaviorSubject(false);
+    public isAdmin: BehaviorSubject<boolean> = new BehaviorSubject(false);
     public isAdmin$: Observable<boolean> = this.isAdmin.asObservable();
 
     public account: BehaviorSubject<Account> = new BehaviorSubject(

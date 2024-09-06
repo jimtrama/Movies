@@ -6,11 +6,11 @@ import Movie from '../../../Models/movie.model';
 import { MovieService } from '../../../Services/movie.service';
 
 @Component({
-    selector: 'app-main-home-content',
+    selector: 'app-movies-page',
     templateUrl: './movies-page.component.html',
     styleUrl: './movies-page.component.scss',
 })
-export class MainHomeContentComponent implements AfterViewInit {
+export class MoviesPageComponent implements AfterViewInit {
     movies: Movie[] = [];
     imagesForBg:string[] = [];
     fetchingNext: { fetching: boolean; nextUrl: string };

@@ -3,10 +3,12 @@ import { CanActivateFn, Router, RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './Pages/login/login.component';
 import { HomeComponent } from './Pages/home/home.component';
 import { AccountService } from './Services/account.service';
-import { MainHomeContentComponent } from './Pages/home/movies-page/movies-page.component';
+import { MoviesPageComponent } from './Pages/home/movies-page/movies-page.component';
 import { AccountContentComponent } from './Pages/home/account-page/account-content.component';
 import { RentalsContentComponent } from './Pages/home/rentals-page/rentals-content.component';
 import { MoviePageComponent } from './Pages/home/movie-page/movie-page.component';
+import { lastValueFrom } from 'rxjs';
+import { GraphPageComponent } from './Pages/home/graph-page/graph-page.component';
 
 const isLoggedInGuard: CanActivateFn = (route, state) => {
     const key = inject(AccountService).key;
@@ -15,6 +17,19 @@ const isLoggedInGuard: CanActivateFn = (route, state) => {
     }
     return !!key;
 };
+
+const isAdminGuard: CanActivateFn = (route, state) => {
+    const key = inject(AccountService).isAdmin.getValue();
+    if (!key) {
+        return inject(Router).createUrlTree(['home']);
+    }
+    if (key && route.url[0].path === 'movies') {
+        return inject(Router).createUrlTree(['home',"graph"]);
+    }
+
+    return !!key;
+};
+
 
 const routes: Routes = [
     {
@@ -30,7 +45,13 @@ const routes: Routes = [
         children: [
             {
                 path: 'movies',
-                component: MainHomeContentComponent,
+                canActivate:[isAdminGuard],
+                component: MoviesPageComponent,
+            },
+            {
+                path: 'graph',
+                canActivate:[isAdminGuard],
+                component: GraphPageComponent,
             },
             {
                 path: 'account',

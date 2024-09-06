@@ -1,11 +1,15 @@
 <div class="header-wrapper" >
     <button *ngIf="isAdmin" (click)="actionClicked()" [routerLink]="['graph']" [routerLinkActive]="'active'" >Graph</button>
-    <div class="bullet" ></div>
-    <button (click)="actionClicked()" [routerLink]="['movies']" [routerLinkActive]="'active'" >Movies</button>
-    <div class="bullet" ></div>
+    <div *ngIf="isAdmin" class="bullet" ></div>
+
+    <button *ngIf="!isAdmin" (click)="actionClicked()" [routerLink]="['movies']" [routerLinkActive]="'active'" >Movies</button>
+    <div *ngIf="!isAdmin" class="bullet" ></div>
+
     <button (click)="actionClicked()" [routerLink]="['rentals']" [routerLinkActive]="'active'" >Rentals</button>
     <div class="bullet" ></div>
+
     <button (click)="actionClicked()" [routerLink]="['account']" [routerLinkActive]="'active'">Account</button>
     <div class="bullet" ></div>
+
     <button (click)="logout()">Log Out</button>
 </div>

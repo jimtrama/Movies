@@ -1,5 +1,5 @@
 export type Order = 'asc' | 'desc';
-export type RentalOrderByKeys = 'movie' | 'rental_date' | 'is_paid' | "no_sort";
+export type RentalOrderByKeys = 'movie' | 'rental_date' | 'is_paid' | "no_sort" | "user";
 
 export type RentalInfo = {
     count: number;

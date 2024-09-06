@@ -20,6 +20,7 @@ export class RentalsContentComponent {
     totalPages: number = 1;
     rentalsInfo: RentalInfo = {} as RentalInfo;
     account: Account = {} as Account;
+    isAdmin:boolean = false;
 
     headers:{title:string,keyToSort:RentalOrderByKeys}[] = 
     [
@@ -60,6 +61,14 @@ export class RentalsContentComponent {
         });
         this.accountService.account$.subscribe((a) => {
             this.account = a;
+        });
+        this.accountService.isAdmin$.subscribe((isAdmin) => {
+            this.isAdmin = isAdmin;
+            if(isAdmin){
+                this.headers[3].title = "User";
+                this.headers[3].keyToSort = "user";
+
+            }
         });
     }
 
