@@ -92,7 +92,8 @@ export class GraphPageComponent implements AfterViewInit{
       div.style.left = (i*step + paddingX/2 )+ "px";
       div.style.height = scale + "px";
       div.style.width = scale + "px";
-      div.style.background = "background: linear-gradient(to right bottom,rgba(255, 255, 255, 0.4),rgba(255, 255, 255, 0.2));"
+      const r = Math.random() * 255;
+      div.style.backgroundColor = `rgba(${r},4,255,0.6)`
       div.id = "circle-"+i;
       canvas.appendChild(div);
 
@@ -109,7 +110,7 @@ export class GraphPageComponent implements AfterViewInit{
 
       const divLine = document.createElement('div');
       divLine.classList.add("line");
-      divLine.style.bottom =  top + "px"
+      //divLine.style.bottom =  "-300px"
       divLine.style.left = (i*step + paddingX/2 + scale/2 )+ "px";
       divLine.style.height = "100%";
       divLine.id = "line-"+i;

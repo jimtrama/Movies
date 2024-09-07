@@ -1,1 +1,29 @@
-<p>create-movie-page works!</p>
+<div class="movie-form-wrapper">
+    <div class="field">
+        <span>Title*</span>
+        <input id="title">
+    </div>
+    <div class="field">
+        <span>Year Released</span>
+        <input id="pub_date" type="number" style="width: 20%;" >
+    </div>
+    <div class="field">
+        <span>Duration</span>
+        <input id="duration" type="number" style="width: 20%;" >
+    </div>
+    <div class="field">
+        <span>Rating</span>
+        <input id="rating" type="number" style="width: 20%;" >
+    </div>
+    <div class="field">
+        <span>Description</span>
+        <textarea id="description"></textarea>
+    </div>
+    <div class="field">
+        <div class="checkbox" *ngFor="let cat of categories;let i = index" (click)="catSelected(i)" >
+            <span>{{cat.title}}</span>
+            <div [ngClass]="{'checked':cat.checked}" ></div>
+        </div>
+    </div>
+    <button (click)="createBtnClicked()" >Create</button>
+</div>
