@@ -7,8 +7,8 @@ import { MoviesPageComponent } from './Pages/home/movies-page/movies-page.compon
 import { AccountContentComponent } from './Pages/home/account-page/account-content.component';
 import { RentalsContentComponent } from './Pages/home/rentals-page/rentals-content.component';
 import { MoviePageComponent } from './Pages/home/movie-page/movie-page.component';
-import { lastValueFrom } from 'rxjs';
 import { GraphPageComponent } from './Pages/home/graph-page/graph-page.component';
+import { CreateMoviePageComponent } from './Pages/home/create-movie-page/create-movie-page.component';
 
 const isLoggedInGuard: CanActivateFn = (route, state) => {
     const key = inject(AccountService).key;
@@ -18,18 +18,21 @@ const isLoggedInGuard: CanActivateFn = (route, state) => {
     return !!key;
 };
 
-const isAdminGuard: CanActivateFn = (route, state) => {
-    const key = inject(AccountService).isAdmin.getValue();
-    if (!key) {
-        return inject(Router).createUrlTree(['home']);
+const simpleUser: CanActivateFn = (route, state) => {
+    const isAdmin = inject(AccountService).isAdmin.getValue();
+    if(isAdmin){
+        return inject(Router).createUrlTree(['home','graph']);
     }
-    if (key && route.url[0].path === 'movies') {
-        return inject(Router).createUrlTree(['home',"graph"]);
-    }
-
-    return !!key;
+    return true;
 };
 
+const adminUser: CanActivateFn = (route, state) => {
+    const isAdmin = inject(AccountService).isAdmin.getValue();
+    if(!isAdmin){
+        return inject(Router).createUrlTree(['home','movies']);
+    }
+    return true;
+};
 
 const routes: Routes = [
     {
@@ -45,20 +48,27 @@ const routes: Routes = [
         children: [
             {
                 path: 'movies',
-                canActivate:[isAdminGuard],
+                canActivate:[simpleUser],
                 component: MoviesPageComponent,
             },
             {
                 path: 'graph',
-                canActivate:[isAdminGuard],
+                canActivate:[adminUser],
                 component: GraphPageComponent,
             },
             {
                 path: 'account',
+                canActivate:[simpleUser],
                 component: AccountContentComponent,
             },
             {
+                path: 'create',
+                canActivate:[adminUser],
+                component: CreateMoviePageComponent,
+            },
+            {
                 path: 'movie/:id',
+                canActivate:[simpleUser],
                 component: MoviePageComponent,
             },
             {

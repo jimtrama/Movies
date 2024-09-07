@@ -8,8 +8,11 @@
     <button (click)="actionClicked()" [routerLink]="['rentals']" [routerLinkActive]="'active'" >Rentals</button>
     <div class="bullet" ></div>
 
-    <button (click)="actionClicked()" [routerLink]="['account']" [routerLinkActive]="'active'">Account</button>
-    <div class="bullet" ></div>
+    <button *ngIf="!isAdmin" (click)="actionClicked()" [routerLink]="['account']" [routerLinkActive]="'active'">Account</button>
+    <div *ngIf="!isAdmin" class="bullet" ></div>
+
+    <button *ngIf="isAdmin" (click)="actionClicked()" [routerLink]="['create']" [routerLinkActive]="'active'">Create Movie</button>
+    <div *ngIf="isAdmin" class="bullet" ></div>
 
     <button (click)="logout()">Log Out</button>
 </div>

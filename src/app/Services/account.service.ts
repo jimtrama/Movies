@@ -65,7 +65,7 @@ export class AccountService {
                         })
                     );
                     this.checkAccountType();
-                    this.router.navigate(['home', 'main']);
+                    this.router.navigate(['home', 'movies']);
                 }
             });
     }

@@ -18,6 +18,7 @@ import { MoviePageComponent } from './Pages/home/movie-page/movie-page.component
 import { MovieService } from './Services/movie.service';
 import { CutIfNeed } from './Pipes/pipes';
 import { GraphPageComponent } from './Pages/home/graph-page/graph-page.component';
+import { CreateMoviePageComponent } from './Pages/home/create-movie-page/create-movie-page.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { GraphPageComponent } from './Pages/home/graph-page/graph-page.component
     AccountContentComponent,
     MoviePageComponent,
     CutIfNeed,
-    GraphPageComponent
+    GraphPageComponent,
+    CreateMoviePageComponent
   ],
   imports: [
     BrowserModule,
