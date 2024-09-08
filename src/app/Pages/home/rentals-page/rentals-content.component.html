@@ -33,7 +33,7 @@
             <tfoot>
                 <tr class="footer">
                     <button appSpinner [sub]="loadingOther" *ngIf="page >= 2" (click)="prev()" class="icon"><img class="flip" src="assets/icons/next.png" ></button>
-                    <span>{{ page }} of {{ totalPages }} pages</span>
+                    <span style="line-height: fit-content;" >{{ page }} of {{ totalPages }} pages</span>
                     <button appSpinner [sub]="loadingOther" *ngIf="page<totalPages" (click)="next()" class="icon" > <img src="assets/icons/next.png" ></button>
                 </tr>
             </tfoot>
