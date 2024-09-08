@@ -17,20 +17,20 @@ export class AccountContentComponent {
     {
       title:"Email",
       key:"email",
-      icon:"money.png"
+      icon:"mail.png"
     },
     {
-      title:"Email",
+      title:"First Name",
       key:"first_name",
-      icon:"money.png"
+      icon:"user.png"
     },
     {
-      title:"Email",
+      title:"Last Name",
       key:"last_name",
-      icon:"money.png"
+      icon:"user.png"
     },
     {
-      title:"Email",
+      title:"Wallet",
       key:"wallet",
       icon:"money.png"
     },
