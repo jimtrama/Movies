@@ -1,6 +1,9 @@
 <div class="account-wrapper">
-    <span>{{account.email}}</span>
-    <span>{{account.first_name}}</span>
-    <span>{{account.last_name}}</span>
-    <span>{{account.wallet}}</span>
+    <div class="section" *ngFor="let accountProp of accountPros ">
+        <span class="title">{{accountProp.title}}</span>
+        <div class="value-icon-wrapper">
+            <img class="icon" [src]="'assets/icons/'+accountProp.icon">
+            <span>{{account[accountProp.key]}}</span>
+        </div>
+    </div>
 </div>
