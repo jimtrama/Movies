@@ -3,7 +3,6 @@ import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import Movie from '../Models/movie.model';
 import { HttpClient } from '@angular/common/http';
 import {
-    CREATE_MOVIE_ENDPOINT,
     GET_MOVIE,
     GET_RENTALS_ENDPOINT,
     RENT_A_MOVIE_ENDPOINT,

@@ -19,7 +19,7 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
-    "noUnusedParameters":true,
+    "noUnusedLocals":true,
     "lib": [
       "ES2022",
       "dom"

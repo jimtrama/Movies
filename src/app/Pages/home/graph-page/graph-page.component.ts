@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import Movie from '../../../Models/movie.model';
-import SimResponse from "./data.json";
 import { exhaustMap } from 'rxjs';
 import { MOVIES_ENDPOINT } from '../../../api/api.constants';
 

@@ -16,7 +16,6 @@ export class MovieComponent implements AfterContentInit {
     constructor(private router: Router,private movieService:MovieService) {}
 
     ngAfterContentInit(): void {
-      let d = new Set();
       if (!!this.movie.poster_url) {
         this.movieService.addImage(this.movie.poster_url);
         this.posterUrl = this.movie.poster_url;

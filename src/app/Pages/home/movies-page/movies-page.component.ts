@@ -3,7 +3,6 @@ import { AfterViewInit, Component } from '@angular/core';
 import { MOVIES_ENDPOINT } from '../../../api/api.constants';
 import { CategoriesResponse } from '../../../api/responses.types';
 import Movie from '../../../Models/movie.model';
-import { MovieService } from '../../../Services/movie.service';
 
 @Component({
     selector: 'app-movies-page',
@@ -15,7 +14,7 @@ export class MoviesPageComponent implements AfterViewInit {
     imagesForBg:string[] = [];
     fetchingNext: { fetching: boolean; nextUrl: string };
 
-    constructor(private http: HttpClient,private movieService:MovieService) {
+    constructor(private http: HttpClient) {
         this.fetchingNext = { fetching: false, nextUrl: '' };
         this.fetchMovies(MOVIES_ENDPOINT + '?page=1&page_size=31');
 

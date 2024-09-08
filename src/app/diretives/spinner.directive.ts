@@ -1,5 +1,5 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
-import { from, Observable, Subscription, take } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Directive({
     selector: '[appSpinner]',
