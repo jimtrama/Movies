@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { CREATE_MOVIE } from '../../../api/api.constants';
+import { Subscription } from 'rxjs';
+import { ErrorService } from '../../../Services/error.service';
 
 
 type MovieCreate = 
@@ -19,7 +21,11 @@ type MovieCreate =
     styleUrl: './create-movie-page.component.scss',
 })
 export class CreateMoviePageComponent {
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient,private errorService:ErrorService) {
+        this.errorService.listen.subscribe(e=>{
+            this.errorMsg = e.desc[0]
+        })
+    }
 
     categories: { title: string; checked: boolean }[] = [
         { title: 'Horror', checked: false },
@@ -28,6 +34,8 @@ export class CreateMoviePageComponent {
         { title: 'Lifestyle', checked: false },
         { title: 'Comedy', checked: false },
     ];
+
+    errorMsg:string = "";
 
     catSelected(i: number) {
         this.categories[i].checked = !this.categories[i].checked;
@@ -41,38 +49,40 @@ export class CreateMoviePageComponent {
              movie as MovieCreate
             );
         }else{
-          console.log(movie);
-          
+            this.errorMsg = "Something went wrong with the "+movie;
+            this.loading = {closed:true} as Subscription;
         }
+        
     }
 
     createMovie(): MovieCreate | string {
+
         const toSend: any = {};
 
         const title = (<HTMLInputElement>document.getElementById('title'))
             .value;
-        if (!title || (title.length <= 0 && title.length > 40)) return 'title';
+        if (!title || (title.length <= 0 && title.length > 40)) return 'Title';
         toSend['title'] = title;
 
         const pub_date = (<HTMLInputElement>document.getElementById('pub_date'))
             .value;
-        if (pub_date.length != 4 && pub_date.length != 0) return 'pub';
+        if (pub_date.length != 4 && pub_date.length != 0) return 'Year';
         toSend['pub_date'] = pub_date == ""?0:pub_date;
 
         const duration = (<HTMLInputElement>document.getElementById('duration'))
             .value;
         if (duration.length >= 4)
-            return 'duration';
+            return 'Duration';
         toSend['duration'] = duration == ""?0:duration;
 
         const rating = (<HTMLInputElement>document.getElementById('rating'))
             .value;
-        if (  rating.length >= 3) return 'rating';
+        if (  rating.length >= 3) return 'Rating';
         toSend['rating'] = rating == ""?0:rating;
 
         const description = (<HTMLInputElement>document.getElementById('description'))
             .value;
-        if ( description.length >= 100) return 'description';
+        if ( description.length >= 100) return 'Description';
         toSend['description'] = description;
 
         let cats: any = [];
@@ -86,10 +96,11 @@ export class CreateMoviePageComponent {
         return toSend;
     }
 
+    loading:Subscription = {} as Subscription
     sendRequest(
         movie:MovieCreate
     ) {
-        this.http
+        this.loading = this.http
             .post(CREATE_MOVIE, {
                 title:movie.title,
                 categories:movie.categories,
@@ -99,7 +110,10 @@ export class CreateMoviePageComponent {
                 description:movie.description,
             })
             .subscribe((res) => {
-                console.log(res);
+                this.errorMsg = "";
+                ["title","pub_date","duration","rating","description"]
+                .forEach((id)=>{(<HTMLInputElement>document.getElementById(id)).value = ""});
+                this.categories.forEach(cat=>cat.checked = false)
             });
     }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MovieService } from '../../../Services/movie.service';
 import Movie from '../../../Models/movie.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-movie-page',
@@ -21,8 +22,10 @@ export class MoviePageComponent {
         this.movieService.getMovie(uuid as string).subscribe(m=>this.movie = m)
     }
 
+    loadingSub:Subscription = {} as Subscription;
+
     rent() {
-        this.movieService.rent(this.movie,this.onSuccess.bind(this),this.onError.bind(this));
+        this.loadingSub = this.movieService.rent(this.movie,this.onSuccess.bind(this),this.onError.bind(this));
     }
 
     onSuccess(){

@@ -17,12 +17,7 @@
 
     border-radius: 1rem;
 
-    background: linear-gradient(
-        to right bottom,
-        rgba(255, 255, 255, 0.4),
-        rgba(255, 255, 255, 0.2)
-    );
-    backdrop-filter: blur(1rem);
+    background-color: lightgray;
 
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
 }
@@ -44,7 +39,7 @@
     top:0;
     z-index: 10;
     left: 15px;
-    background-color: rgb(233, 233, 233);
+    background-color: lightgray;
     border-radius: 0.2rem;
     padding: 0.2rem 0.2rem;
 }

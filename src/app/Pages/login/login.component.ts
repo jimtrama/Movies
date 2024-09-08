@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AccountService } from '../../Services/account.service';
 import { ErrorService } from '../../Services/error.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -22,11 +23,13 @@ export class LoginComponent {
     });
   }
 
+  loadingSub:Subscription = { } as Subscription;
+
   login() {
     const username = (<HTMLInputElement>document.getElementById('username'))
       .value;
     const password = (<HTMLInputElement>document.getElementById('password'))
       .value;
-    this.accountService.login(username, password);
+    this.loadingSub = this.accountService.login(username, password);
   }
 }

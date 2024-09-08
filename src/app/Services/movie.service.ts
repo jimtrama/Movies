@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import Movie from '../Models/movie.model';
 import { HttpClient } from '@angular/common/http';
 import {
@@ -27,8 +27,8 @@ export class MovieService {
 
     constructor(private http: HttpClient) {}
 
-    rent(movie: Movie, onSuccess: () => void, onError: () => void) {
-        this.http
+    rent(movie: Movie, onSuccess: () => void, onError: () => void):Subscription {
+        return this.http
             .post(RENT_A_MOVIE_ENDPOINT, { movie: movie.uuid })
             .subscribe((res: any) => {
                 if (!!res.movie) {
@@ -37,16 +37,16 @@ export class MovieService {
             }, onError);
     }
 
-    getRentals(url: string = GET_RENTALS_ENDPOINT) {
-        this.http
+    getRentals(url: string = GET_RENTALS_ENDPOINT):Subscription{
+        return this.http
             .get<RentalInfo>(url + '?page_size=5')
             .subscribe((res: RentalInfo) => {
                 this.rentalsInfo.next(res);
             });
     }
 
-    giveItBack(uuid: string, onSuccess: () => void) {
-        this.http
+    giveItBack(uuid: string, onSuccess: () => void):Subscription {
+        return this.http
             .patch( RETURN_RENTAL + uuid, { is_paid: true })
             .subscribe((res: any) => {
                 if (res === 'Movie returned successfully.') {

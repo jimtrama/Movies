@@ -23,7 +23,7 @@
                     <td>{{ rental.charge }}</td>
                     <td>
                         <span *ngIf="isAdmin" > {{rental.user}}</span>
-                        <button class="give-it-back-btn" *ngIf="!rental.is_paid && !isAdmin" (click)="giveItBack(i)">Give it Back</button>
+                        <button appSpinner [sub]="loading" class="give-it-back-btn" *ngIf="!rental.is_paid && !isAdmin" (click)="giveItBack(i)">Give it Back</button>
                     </td>
                     <td>
                         <img style="height: 50px;" src="assets/icons/rent.png" *ngIf="!rental.is_paid" >
@@ -32,9 +32,9 @@
             </tbody>
             <tfoot>
                 <tr class="footer">
-                    <button *ngIf="page >= 2" (click)="prev()" class="icon"><img class="flip" src="assets/icons/next.png" ></button>
+                    <button appSpinner [sub]="loadingOther" *ngIf="page >= 2" (click)="prev()" class="icon"><img class="flip" src="assets/icons/next.png" ></button>
                     <span>{{ page }} of {{ totalPages }} pages</span>
-                    <button *ngIf="page<totalPages" (click)="next()" class="icon" > <img src="assets/icons/next.png" ></button>
+                    <button appSpinner [sub]="loadingOther" *ngIf="page<totalPages" (click)="next()" class="icon" > <img src="assets/icons/next.png" ></button>
                 </tr>
             </tfoot>
         </table>

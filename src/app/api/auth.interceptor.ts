@@ -41,7 +41,6 @@ export class AuthInterceptor implements HttpInterceptor {
           if(this.accountService.refreshLink != ""){
             this.http.post(REFRESH_ENDPOINT,{refresh:this.accountService.refreshLink})
             .subscribe((res:any)=>{
-              console.log(res);
               if(!!res.access){
                   this.accountService.updateKey(res.access)
               }else{

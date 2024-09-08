@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, ViewEncapsulation } from '@angular/core';
 import Movie from '../../../Models/movie.model';
 import SimResponse from "./data.json";
+import { exhaustMap } from 'rxjs';
+import { MOVIES_ENDPOINT } from '../../../api/api.constants';
 
 
 
@@ -11,33 +13,25 @@ import SimResponse from "./data.json";
   styleUrl: './graph-page.component.scss',
   encapsulation:ViewEncapsulation.None
 })
-export class GraphPageComponent implements AfterViewInit{
+export class GraphPageComponent{
 
   data:any = {};
   max:number = -Infinity;
   min:number = Infinity;
+  circles:{x:number,y:number,r:number,year:number,count:number}[] = []
+  selectedYear:{year:number,count:number} = {year:-1,count:0};
+  loading= true;
 
   constructor(private http:HttpClient){
-    // this.http.get(MOVIES_ENDPOINT)
-    // .pipe(exhaustMap((res:any)=>{
-    //   const count = res.count;
-    //   return this.http.get(MOVIES_ENDPOINT+"?page_size="+count)
-    // }))
-    // .subscribe((res:any)=>{
-    //   this.data = res.results;
-    // })
-
-    
-
-    this.prepareData([...SimResponse.results] as Movie[])
-
-
+    this.http.get(MOVIES_ENDPOINT)
+    .pipe(exhaustMap((res:any)=>{
+      const count = res.count;
+      return this.http.get(MOVIES_ENDPOINT+"?page_size="+count)
+    }))
+    .subscribe((res:any)=>{
+      this.prepareData(res.results);
+    })
   }
-
-  ngAfterViewInit(): void {
-    this.renderCircles();
-  }
-
 
   prepareData(data:Movie[]){
     let s:any = {};
@@ -56,9 +50,11 @@ export class GraphPageComponent implements AfterViewInit{
         s[movie.pub_date] = [movie.title];
       }
     }
-    console.log(s);
     this.data = s;
+    this.renderCircles();
   }
+
+  
 
   renderCircles(){
     const canvas = document.getElementById("board");
@@ -79,43 +75,23 @@ export class GraphPageComponent implements AfterViewInit{
     const step = width / keys.length;
     
     for(let i = 0 ; i < keys.length;i++){    
-      const scale = this.lerp(
+      const r = this.lerp(
         this.data[keys[i]].length,
         this.min,
         this.max,
         toMin,
         toMax
       )
-      const div = document.createElement('div');
-      div.classList.add("circle");
-      div.style.top = ((Math.random() * (max-min)) + min )+ "px"
-      div.style.left = (i*step + paddingX/2 )+ "px";
-      div.style.height = scale + "px";
-      div.style.width = scale + "px";
-      const r = Math.random() * 255;
-      div.style.backgroundColor = `rgba(${r},4,255,0.6)`
-      div.id = "circle-"+i;
-      canvas.appendChild(div);
-
-      const ledgent = document.getElementById("ledgent");
-      if(!ledgent) return;
-      const top = ((Math.random() * (ledgent.getBoundingClientRect().height-10)) + 0 );
-      const spanText = document.createElement('span');
-      spanText.innerText = keys[i];
-      spanText.classList.add("text");
-      spanText.style.bottom = top+spanText.getBoundingClientRect().height + "px"
-      spanText.style.left = (i*step + paddingX/2 + scale/2 - 15 )+ "px";
-      spanText.id = "text-"+i;
-      ledgent.appendChild(spanText);
-
-      const divLine = document.createElement('div');
-      divLine.classList.add("line");
-      //divLine.style.bottom =  "-300px"
-      divLine.style.left = (i*step + paddingX/2 + scale/2 )+ "px";
-      divLine.style.height = "100%";
-      divLine.id = "line-"+i;
-      document.getElementById("wrapper")?.prepend(divLine);
+      const y = Math.random() * (max - min) + min;
+      const x = i * step + paddingX / 2;
+      this.circles.push({x,y,r,year:+keys[i],count:this.data[keys[i]].length})
     }
+    this.loading =  false;
+  }
+  
+  yearSelected(event:any){
+    this.selectedYear.year = event[0];
+    this.selectedYear.count = event[1];
   }
 
   clearCanvas(){

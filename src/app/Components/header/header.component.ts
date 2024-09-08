@@ -10,12 +10,17 @@ import { MovieService } from '../../Services/movie.service';
 export class HeaderComponent {
 
   isAdmin = false;
+
+  isMobile = false;
+  menuOpened = false;
   
   constructor(
     private accountService:AccountService,
-    private movieService:MovieService
+    private movieService:MovieService,
   ){
     accountService.isAdmin$.subscribe(a=>this.isAdmin = a);
+    window.addEventListener('resize',()=>this.isMobile = innerWidth < 600)
+    this.isMobile = innerWidth < 600
   }
 
   logout(){
@@ -23,5 +28,9 @@ export class HeaderComponent {
   }
   actionClicked(){
     this.movieService.shuffleImages();
+    this.menuOpened = false;
+  }
+  menuBtnClicked(){
+    this.menuOpened = !this.menuOpened;
   }
 }

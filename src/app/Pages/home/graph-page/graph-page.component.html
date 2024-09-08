@@ -1,13 +1,27 @@
-<div id="board-wrapper" class="graph-page-wrapper" >
+<div id="board-wrapper" class="graph-page-wrapper">
     <div id="wrapper" class="internal-wrapper">
-        <div id="board" class="board" >
-
-        
+        <div id="board" class="board">
+            <app-circle
+                (yearSelected)="yearSelected($event)"
+                *ngFor="let cirlce of circles"
+                [x]="cirlce.x"
+                [y]="cirlce.y"
+                [r]="cirlce.r"
+                [year]="cirlce.year"
+                [count]="cirlce.count"
+            ></app-circle>
+            <div *ngIf="loading" class="spinner" >ddd</div>
         </div>
         
     </div>
-    <div id="ledgent" class="ledgent-wrapper" >
-    
+    <div class="ledgent">
+        <div>
+            <span>Year</span>
+            <span *ngIf="selectedYear.year != -1" class="value">{{ selectedYear.year }}</span>
+        </div>
+        <div>
+            <span>Movies</span>
+            <span *ngIf="selectedYear.year != -1" class="value">{{ selectedYear.count }}</span>
+        </div>
     </div>
-    
 </div>

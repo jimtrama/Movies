@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="row">
-        <button (click)="rent()" class="rent-movie-button">Rent</button>
+        <button appSpinner [sub]="loadingSub" (click)="rent()" class="rent-movie-button">Rent</button>
         <span style="color: red; font-size: 1rem;">{{errorText}}</span>
     </div>
     <div class="row">

@@ -2,5 +2,5 @@
     <input id="username" placeholder="username"/>
     <input id="password" type="password" placeholder="password" />
     <span>{{errorMessage}}</span>
-    <button (click)="login()">log in</button>
+    <button appSpinner [sub]="loadingSub" (click)="login()">log in</button>
 </div>

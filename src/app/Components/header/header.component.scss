@@ -1,6 +1,6 @@
 .header-wrapper{
     width: calc(100vw - 2rem);
-    height: 7vh;
+    height: fit-content;
     background-color: rgba(255, 255, 255, 0.358);
     backdrop-filter: blur(1rem);
     display: flex;
@@ -8,6 +8,26 @@
     align-items: center;
     padding: 0.5rem 1rem;
     gap: 1rem;
+    position: absolute;
+    z-index: 1000;
+
+    .link{
+        background-color: transparent;
+        font-weight: bolder;
+        letter-spacing: 0.2rem;
+        font-size: 1.2rem;
+    }
+    
+    .link:hover{
+       border-bottom: 2px solid grey;
+    }
+
+    .active{
+        color: white;
+        background-color: black;
+        padding: 0.3rem 1rem;
+        border-radius: 0.4rem;
+    }
 }
 
 .bullet{
@@ -16,20 +36,29 @@
     border-radius: 50%;
     background-color: white;
 }
+.colapsed-header{
+    flex-direction: column;
+    align-items: end;
+}
 
-button{
+.actions-wrpper{
+    height: fit-content;
+    width: fit-content;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.358);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.link-collapsed{
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3rem;
     background-color: transparent;
-    font-weight: bolder;
-    letter-spacing: 0.2rem;
-    font-size: 1.2rem;
 }
 
-button:hover{
-   border-bottom: 2px solid grey;
-}
-.active{
-    color: white;
-    background-color: black;
-    padding: 0.3rem 1rem;
-    border-radius: 0.4rem;
-}
+

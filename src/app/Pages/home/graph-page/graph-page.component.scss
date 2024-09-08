@@ -34,20 +34,14 @@
 }
 
 
-.circle{
-    border-radius: 50%;
-    position: absolute;
-    backdrop-filter: blur(0.2rem);
-}
+.ledgent{
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    padding: 1rem 0.8rem;
 
-.line{
-    background-color: purple;
-    width: 1px;
-    height: 300%;
-    position: absolute;
-}
+    border-radius: 2rem;
 
-.ledgent-wrapper{
     background: linear-gradient(
         to right bottom,
         rgba(255, 255, 255, 0.4),
@@ -55,15 +49,25 @@
     );
     backdrop-filter: blur(0.2rem);
 
+    width: fit-content;
 
-    width: 90vw;
-    height: 100px;
     position: absolute;
-    bottom: 30px;
     left: 50%;
-    transform: translatex(-50%);
-    border-radius: 2rem;
+
+    transform: translateX(-50%);
+
+
+    div{
+        display: flex;
+        gap: 0.8rem;
+    }
+    
+    .value{
+        font-weight: bold;
+    }
 }
+
+
 
 .text{
     position: absolute;

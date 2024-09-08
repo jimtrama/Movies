@@ -7,7 +7,7 @@ import {
 } from '../api/api.constants';
 import { Router } from '@angular/router';
 import Account from '../Models/account.model';
-import { BehaviorSubject, noop, Observable } from 'rxjs';
+import { BehaviorSubject, noop, Observable, Subscription } from 'rxjs';
 
 const ID_KEY = 'id';
 const ACCOUNT_KEY = 'account';
@@ -50,8 +50,8 @@ export class AccountService {
         }
     }
 
-    login(username: string, password: string) {
-        this.http
+    login(username: string, password: string):Subscription {
+        return this.http
             .post(LOGIN_ENDPOINT, { username, password })
             .subscribe((res: any) => {
                 if (!!res.access) {
@@ -65,7 +65,12 @@ export class AccountService {
                         })
                     );
                     this.checkAccountType();
-                    this.router.navigate(['home', 'movies']);
+                    if(this.isAdmin.getValue()){
+                        this.router.navigate(['home', 'graph']);
+                    }else{
+                        this.router.navigate(['home', 'movies']);
+                    }
+                    
                 }
             });
     }

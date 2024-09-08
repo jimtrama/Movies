@@ -24,7 +24,6 @@ export class MoviesPageComponent implements AfterViewInit {
 
     fetchMovies(url: string) {
         this.http.get<CategoriesResponse>(url).subscribe((response) => {
-            console.log(response);
             this.fetchingNext.nextUrl = response.next;
             this.fetchingNext.fetching = false;
             response.results.forEach((movie) => {

@@ -8,6 +8,7 @@ import {
 } from '../../../Models/rental.model';
 import { AccountService } from '../../../Services/account.service';
 import Account from '../../../Models/account.model';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-rentals-content',
@@ -72,9 +73,11 @@ export class RentalsContentComponent {
         });
     }
 
+    loading:Subscription = {} as Subscription;
+    loadingOther:Subscription = {} as Subscription;
     giveItBack(i: number) {
         this.page = 1;
-        this.movieService.giveItBack(
+        this.loading = this.movieService.giveItBack(
             this.rentals[i].uuid,
             this.onOk.bind(this)
         );
@@ -88,14 +91,14 @@ export class RentalsContentComponent {
     next() {
         if (this.rentalsInfo.next != '' && this.page < this.totalPages) {
             this.page++;
-            this.movieService.getRentals(this.rentalsInfo.next);
+            this.loadingOther = this.movieService.getRentals(this.rentalsInfo.next);
         }
     }
 
     prev() {
         if (this.rentalsInfo.previous != '' && this.page >= 2) {
             this.page--;
-            this.movieService.getRentals(this.rentalsInfo.previous);
+            this.loadingOther = this.movieService.getRentals(this.rentalsInfo.previous);
         }
     }
 

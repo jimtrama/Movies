@@ -1,0 +1,12 @@
+
+:host{
+    border-radius: 50%;
+    position: absolute;
+    backdrop-filter: blur(0.2rem);
+}
+
+.selected{
+    width: 100%;
+    height: 100%;
+    background: #b93d23;
+}

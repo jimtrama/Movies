@@ -1,18 +1,132 @@
-<div class="header-wrapper" >
-    <button *ngIf="isAdmin" (click)="actionClicked()" [routerLink]="['graph']" [routerLinkActive]="'active'" >Graph</button>
-    <div *ngIf="isAdmin" class="bullet" ></div>
+<div
+    id="header"
+    class="header-wrapper"
+    [ngClass]="{ 'colapsed-header': isMobile }"
+>
+    <ng-container *ngIf="!isMobile">
+        <button
+            class="link"
+            *ngIf="isAdmin"
+            (click)="actionClicked()"
+            [routerLink]="['graph']"
+            [routerLinkActive]="'active'"
+        >
+            Graph
+        </button>
+        <div *ngIf="isAdmin" class="bullet"></div>
 
-    <button *ngIf="!isAdmin" (click)="actionClicked()" [routerLink]="['movies']" [routerLinkActive]="'active'" >Movies</button>
-    <div *ngIf="!isAdmin" class="bullet" ></div>
+        <button
+            class="link"
+            *ngIf="!isAdmin"
+            (click)="actionClicked()"
+            [routerLink]="['movies']"
+            [routerLinkActive]="'active'"
+        >
+            Movies
+        </button>
+        <div *ngIf="!isAdmin" class="bullet"></div>
 
-    <button (click)="actionClicked()" [routerLink]="['rentals']" [routerLinkActive]="'active'" >Rentals</button>
-    <div class="bullet" ></div>
+        <button
+            class="link"
+            (click)="actionClicked()"
+            [routerLink]="['rentals']"
+            [routerLinkActive]="'active'"
+        >
+            Rentals
+        </button>
+        <div class="bullet"></div>
 
-    <button *ngIf="!isAdmin" (click)="actionClicked()" [routerLink]="['account']" [routerLinkActive]="'active'">Account</button>
-    <div *ngIf="!isAdmin" class="bullet" ></div>
+        <button
+            class="link"
+            *ngIf="!isAdmin"
+            (click)="actionClicked()"
+            [routerLink]="['account']"
+            [routerLinkActive]="'active'"
+        >
+            Account
+        </button>
+        <div *ngIf="!isAdmin" class="bullet"></div>
 
-    <button *ngIf="isAdmin" (click)="actionClicked()" [routerLink]="['create']" [routerLinkActive]="'active'">Create Movie</button>
-    <div *ngIf="isAdmin" class="bullet" ></div>
+        <button
+            class="link"
+            *ngIf="isAdmin"
+            (click)="actionClicked()"
+            [routerLink]="['create']"
+            [routerLinkActive]="'active'"
+        >
+            Create Movie
+        </button>
+        <div *ngIf="isAdmin" class="bullet"></div>
 
-    <button (click)="logout()">Log Out</button>
+        <button class="link" (click)="logout()">Log Out</button>
+    </ng-container>
+    <ng-container *ngIf="isMobile">
+        <button
+            (click)="menuBtnClicked()"
+            style="background-color: transparent"
+        >
+            <img
+                style="height: 30px; width: 30px; background-color: transparent"
+                [src]="
+                    menuOpened
+                        ? 'assets/icons/menu_open.png'
+                        : 'assets/icons/menu.png'
+                "
+            />
+        </button>
+        <div class="actions-wrpper" *ngIf="menuOpened">
+            <button
+                class="link-collapsed"
+                *ngIf="isAdmin"
+                (click)="actionClicked()"
+                [routerLink]="['graph']"
+                [routerLinkActive]="'active'"
+            >
+                Graph
+            </button>
+            
+            <button
+                class="link-collapsed"
+                *ngIf="!isAdmin"
+                (click)="actionClicked()"
+                [routerLink]="['movies']"
+                [routerLinkActive]="'active'"
+            >
+                Movies
+            </button>
+
+            <button
+                class="link-collapsed"
+                (click)="actionClicked()"
+                [routerLink]="['rentals']"
+                [routerLinkActive]="'active'"
+            >
+                Rentals
+            </button>
+           
+
+            <button
+                class="link-collapsed"
+                *ngIf="!isAdmin"
+                (click)="actionClicked()"
+                [routerLink]="['account']"
+                [routerLinkActive]="'active'"
+            >
+                Account
+            </button>
+
+
+            <button
+                class="link-collapsed"
+                *ngIf="isAdmin"
+                (click)="actionClicked()"
+                [routerLink]="['create']"
+                [routerLinkActive]="'active'"
+            >
+                Create Movie
+            </button>
+
+            <button class="link-collapsed" (click)="logout()">Log Out</button>
+        </div>
+    </ng-container>
 </div>

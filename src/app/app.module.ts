@@ -19,6 +19,8 @@ import { MovieService } from './Services/movie.service';
 import { CutIfNeed } from './Pipes/pipes';
 import { GraphPageComponent } from './Pages/home/graph-page/graph-page.component';
 import { CreateMoviePageComponent } from './Pages/home/create-movie-page/create-movie-page.component';
+import { CircleComponent } from './Pages/home/graph-page/Components/circle/circle.component';
+import { SpinnerDirective } from './diretives/spinner.directive';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { CreateMoviePageComponent } from './Pages/home/create-movie-page/create-
     MoviePageComponent,
     CutIfNeed,
     GraphPageComponent,
-    CreateMoviePageComponent
+    CreateMoviePageComponent,
+    CircleComponent,
+    SpinnerDirective
   ],
   imports: [
     BrowserModule,

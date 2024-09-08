@@ -13,14 +13,13 @@
     scrollbar-width: none;
 }
 .spinner-wrapper{
-    width: fit-content;
+    width: 150px;
+    height: 320px;
     display: flex;
     align-items: center;
     justify-content: end;
 
     padding: 1rem 0.5rem;
-
-    height: fit-content;
 
     border-radius: 2rem;
 
@@ -37,7 +36,8 @@
 .spinner-text-group{
     position: relative;
     width: fit-content;
-
+    height: 100%;
+    width: 100%;
 }
 
 #loading {
@@ -66,9 +66,13 @@
   
 .spinner-text{
     letter-spacing: 0.4rem;
-    font-size: 4rem;
+    font-size: 1rem;
     font-weight: bold;
     color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 
 @keyframes spin {

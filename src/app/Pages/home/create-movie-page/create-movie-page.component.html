@@ -25,5 +25,6 @@
             <div [ngClass]="{'checked':cat.checked}" ></div>
         </div>
     </div>
-    <button (click)="createBtnClicked()" >Create</button>
+    <span style="color: purple;">{{errorMsg}}</span>
+    <button appSpinner [sub]="loading" [positionRelavtive]="false"  (click)="createBtnClicked()" >Create</button>
 </div>
